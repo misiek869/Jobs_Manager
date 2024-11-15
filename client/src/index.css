@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+::after,
+::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--letter-spacing: 1px;
+	--max-width: 1120px;
+	--fixed-width: 600px;
+	--fluid-width: 90vw;
+	--nav-height: 6rem;
+	--btn-bg: #c2410c;
+	--btn-bg-hover: #9a3412;
+	--border-radius: 0.125rem;
+	--letter-spacing: 1px;
+	--transition: 0.3s ease-in-out all;
+}
+
+html {
+	font-size: 100%;
+} /*16px*/
+
+body {
+	background: var(--background-color);
+	color: var(--text-color);
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-weight: 400;
+	line-height: 1;
+}
+
+p {
+	margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+	margin: 0;
+	font-weight: 400;
+	line-height: 1;
+	text-transform: capitalize;
+	letter-spacing: var(--letter-spacing);
+}
+
+h1 {
+	font-size: clamp(2rem, 5vw, 5rem); /* Large heading */
+}
+
+h2 {
+	font-size: clamp(1.5rem, 3vw, 3rem); /* Medium heading */
+}
+
+h3 {
+	font-size: clamp(1.25rem, 2.5vw, 2.5rem); /* Small heading */
+}
+
+h4 {
+	font-size: clamp(1rem, 2vw, 2rem); /* Extra small heading */
+}
+
+h5 {
+	font-size: clamp(0.875rem, 1.5vw, 1.5rem); /* Tiny heading */
+}
+
+.text {
+	margin-bottom: 1.5rem;
+	max-width: 40em;
+}
+
+small,
+.text-small {
+	font-size: var(--small-text);
+}
+
+a {
+	text-decoration: none;
+}
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.img {
+	width: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+.landing-page {
+	min-height: calc(100vh - 6rem);
+}
+
+.container {
+	width: 90vw;
+	max-width: 1120px;
+	margin: 0 auto;
+}
+
+.active {
+	color: #c2410c;
+}
+
+.dropdown {
+	opacity: 0;
+	transform: translateY(-10px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+	visibility: hidden; /* Domyślnie ukryty */
+}
+
+.dropdown.show {
+	opacity: 1;
+	transform: translateY(0);
+	visibility: visible; /* Umożliwia widoczność */
+}
