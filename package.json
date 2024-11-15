@@ -5,6 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"setup-project": "npm i && cd client && npm i",
+		"server": "nodemon server",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
