@@ -2,14 +2,11 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
 import morgan from 'morgan'
-import { nanoid } from 'nanoid'
+import mongoose from 'mongoose'
+// routers
+import jobRouter from './routes/jobRouter.js'
 
 const app = express()
-
-let jobs = [
-	{ id: nanoid(), company: 'Apple', position: 'front-end developer' },
-	{ id: nanoid(), company: 'Google', position: 'back-end developer' },
-]
 
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'))
@@ -26,79 +23,7 @@ app.post('/', (req, res) => {
 	res.json({ message: 'data received', data: req.body })
 })
 
-// Get all jobs
-app.get('/api/v1/jobs', (req, res) => {
-	res.status(200).json({ jobs })
-})
-
-// Create job
-app.post('/api/v1/jobs', (req, res) => {
-	const { company, position } = req.body
-	if (!company || !position) {
-		return res.status(400).json({ msg: 'please provide company and position' })
-	}
-
-	const id = nanoid(10)
-
-	const job = { id, company, position }
-
-	jobs.push(job)
-
-	res.status(201).json({ job })
-})
-
-// Get single job
-app.get('/api/v1/jobs/:id', (req, res) => {
-	const { id } = req.params
-
-	const job = jobs.find(job => job.id === id)
-
-	if (!job) {
-		return res.status(404).json({ msg: `there is no job with id ${id}` })
-	}
-
-	res.status(200).json({ job })
-})
-
-// Edit job
-
-app.patch('/api/v1/jobs/:id', (req, res) => {
-	const { company, position } = req.body
-
-	if (!company || !position) {
-		return res.status(404).json({ msg: 'please provide company and position' })
-	}
-
-	const { id } = req.params
-
-	const job = jobs.find(job => job.id === id)
-
-	if (!job) {
-		return res.status(404).json({ msg: `there is no job with id ${id}` })
-	}
-
-	job.company = company
-	job.position = position
-
-	res.status(200).json({ msg: 'job modified', job })
-})
-
-// Delete job
-
-app.delete('/api/v1/jobs/:id', (req, res) => {
-	const { id } = req.params
-
-	const job = jobs.find(job => job.id === id)
-
-	if (!job) {
-		return res.status(404).json({ msg: `there is no job with id ${id}` })
-	}
-
-	const newJobs = jobs.filter(job => job.id !== id)
-	jobs = newJobs
-
-	res.status(200).json({ msg: 'job deleted' })
-})
+app.use('/api/v1/jobs', jobRouter)
 
 app.use('*', (req, res) => {
 	res.status(404).json({ msg: 'not found' })
@@ -111,6 +36,12 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 5100
 
-app.listen(port, () => {
-	console.log(`server is running on port ${port}`)
-})
+try {
+	await mongoose.connect(process.env.MONGO_URL)
+	app.listen(port, () => {
+		console.log(`server is running on port ${port}`)
+	})
+} catch (error) {
+	console.log(error)
+	process.exit(1)
+}
