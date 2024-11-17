@@ -1,6 +1,6 @@
 import JobModel from '../models/JobModel.js'
 import { StatusCodes } from 'http-status-codes'
-
+import { NotFoundError } from '../errors/customErrors.js'
 import { nanoid } from 'nanoid'
 
 let jobs = [
@@ -29,9 +29,7 @@ export const getSingleJob = async (req, res) => {
 
 	const job = await JobModel.findById(id)
 
-	if (!job) {
-		return res.status(404).json({ msg: `there is no job with id ${id}` })
-	}
+	if (!job) throw new NotFoundError(`there is no job with id ${id}`)
 
 	res.status(StatusCodes.OK).json({ job })
 }
