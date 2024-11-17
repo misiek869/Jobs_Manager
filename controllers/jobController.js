@@ -41,9 +41,7 @@ export const editJob = async (req, res) => {
 		new: true,
 	})
 
-	if (!updatedJob) {
-		return res.status(404).json({ msg: `there is no job with id ${id}` })
-	}
+	if (!updatedJob) throw new NotFoundError(`there is no job with id ${id}`)
 
 	res.status(StatusCodes.OK).json({ msg: 'job modified', job: updatedJob })
 }
@@ -53,9 +51,7 @@ export const deleteJob = async (req, res) => {
 
 	const removedJob = await JobModel.findByIdAndDelete(id)
 
-	if (!removedJob) {
-		return res.status(404).json({ msg: `there is no job with id ${id}` })
-	}
+	if (!removedJob) throw new NotFoundError(`there is no job with id ${id}`)
 
 	res.status(StatusCodes.OK).json({ msg: 'job deleted', job: removedJob })
 }
