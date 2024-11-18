@@ -1,6 +1,5 @@
 import JobModel from '../models/JobModel.js'
 import { StatusCodes } from 'http-status-codes'
-import { NotFoundError } from '../errors/customErrors.js'
 import { nanoid } from 'nanoid'
 
 let jobs = [
@@ -29,8 +28,6 @@ export const getSingleJob = async (req, res) => {
 
 	const job = await JobModel.findById(id)
 
-	if (!job) throw new NotFoundError(`there is no job with id ${id}`)
-
 	res.status(StatusCodes.OK).json({ job })
 }
 
@@ -41,8 +38,6 @@ export const editJob = async (req, res) => {
 		new: true,
 	})
 
-	if (!updatedJob) throw new NotFoundError(`there is no job with id ${id}`)
-
 	res.status(StatusCodes.OK).json({ msg: 'job modified', job: updatedJob })
 }
 
@@ -50,8 +45,6 @@ export const deleteJob = async (req, res) => {
 	const { id } = req.params
 
 	const removedJob = await JobModel.findByIdAndDelete(id)
-
-	if (!removedJob) throw new NotFoundError(`there is no job with id ${id}`)
 
 	res.status(StatusCodes.OK).json({ msg: 'job deleted', job: removedJob })
 }
