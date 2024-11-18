@@ -5,3 +5,5 @@ export const registerUSer = async (req, res) => {
 	const user = await UserModel.create(req.body)
 	res.status(StatusCodes.CREATED).json({ user })
 }
+
+export const loginUser = async (req, res) => {}
