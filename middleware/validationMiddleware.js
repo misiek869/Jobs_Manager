@@ -48,11 +48,10 @@ export const validateIdParam = withValidationErrors([
 	}),
 ])
 
-// export const validateTest = withValidationErrors([
-// 	body('name')
-// 		.notEmpty()
-// 		.withMessage('name is required')
-// 		.isLength({ min: 3 })
-// 		.withMessage(' name must be at least 3 characters')
-// 		.trim(),
-// ])
+export const validateRegisterUser = withValidationErrors([
+	body('name').notEmpty().withMessage('name is required'),
+	body('email').isEmail().withMessage('valid email is required'),
+	body('password').notEmpty().withMessage('password is required'),
+	body('lastName').notEmpty().withMessage('last name is required'),
+	body('location').notEmpty().withMessage('locationre is required'),
+])
