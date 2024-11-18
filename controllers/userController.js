@@ -6,4 +6,6 @@ export const registerUSer = async (req, res) => {
 	res.status(StatusCodes.CREATED).json({ user })
 }
 
-export const loginUser = async (req, res) => {}
+export const loginUser = async (req, res) => {
+	res.send('logged in')
+}
