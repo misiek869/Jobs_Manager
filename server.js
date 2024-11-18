@@ -9,6 +9,7 @@ import mongoose from 'mongoose'
 
 // routers
 import jobRouter from './routes/jobRouter.js'
+import userRouter from './routes/userRouter.js'
 
 // middleware
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js'
@@ -26,6 +27,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/v1/jobs', jobRouter)
+
+app.use('/api/v1/auth', userRouter)
 
 app.use('*', (req, res) => {
 	res.status(404).json({ msg: 'not found' })
