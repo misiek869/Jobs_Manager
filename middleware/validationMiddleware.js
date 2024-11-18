@@ -11,6 +11,11 @@ const withValidationErrors = validateValues => {
 			const errors = validationResult(req)
 			if (!errors.isEmpty()) {
 				const errorMessages = errors.array().map(error => error.msg)
+
+				if (errorMessages[0].startsWith('there is no job')) {
+					throw new NotFoundError(errorMessages)
+				}
+
 				throw new BadRequestError(errorMessages)
 			}
 
@@ -39,7 +44,7 @@ export const validateIdParam = withValidationErrors([
 		}
 		const job = await JobModel.findById(value)
 
-		if (!job) throw new NotFoundError(`there is no job with id ${id}`)
+		if (!job) throw new NotFoundError(`there is no job with id ${value}`)
 	}),
 ])
 
