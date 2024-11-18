@@ -3,6 +3,7 @@ import { BadRequestError, NotFoundError } from '../errors/customErrors.js'
 import { JOB_STATUS, JOB_TYPE } from '../utils/constans.js'
 import mongoose from 'mongoose'
 import JobModel from '../models/JobModel.js'
+import UserModel from '../models/UserModel.js'
 
 const withValidationErrors = validateValues => {
 	return [
@@ -50,8 +51,21 @@ export const validateIdParam = withValidationErrors([
 
 export const validateRegisterUser = withValidationErrors([
 	body('name').notEmpty().withMessage('name is required'),
-	body('email').isEmail().withMessage('valid email is required'),
-	body('password').notEmpty().withMessage('password is required'),
+	body('email')
+		.notEmpty()
+		.isEmail()
+		.withMessage('valid email is required')
+		.custom(async email => {
+			const user = await UserModel.findOne({ email })
+			if (user) {
+				throw new BadRequestError('email already exists')
+			}
+		}),
+	body('password')
+		.notEmpty()
+		.withMessage('password is required')
+		.isLength({ min: 8 })
+		.withMessage('password must be at least 8 characters'),
 	body('lastName').notEmpty().withMessage('last name is required'),
-	body('location').notEmpty().withMessage('locationre is required'),
+	body('location').notEmpty().withMessage('location is required'),
 ])
