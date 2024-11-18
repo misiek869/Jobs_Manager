@@ -6,7 +6,6 @@ dotenv.config()
 import express from 'express'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
-import { validateTest } from './middleware/validationMiddleware.js'
 
 // routers
 import jobRouter from './routes/jobRouter.js'
@@ -24,11 +23,6 @@ app.use(express.json())
 
 app.get('/', (req, res) => {
 	res.send('hello world')
-})
-
-app.post('/api/v1/test', validateTest, (req, res) => {
-	const { name } = req.body
-	res.json({ message: name, data: req.body })
 })
 
 app.use('/api/v1/jobs', jobRouter)
