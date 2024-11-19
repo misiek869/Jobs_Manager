@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes'
 
-import JobModel from '../models/JobModel'
-import UserModel from '../models/UserModel'
+import JobModel from '../models/JobModel.js'
+import UserModel from '../models/UserModel.js'
 
 export const getCurrentUser = async (req, res) => {
 	res.status(StatusCodes.OK).json({ msg: 'get current user' })

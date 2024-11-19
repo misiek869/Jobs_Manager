@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser'
 // routers
 import jobRouter from './routes/jobRouter.js'
 import userRouter from './routes/userRouter.js'
+import currentUserRouter from './routes/currentUserRouter.js'
 
 // middleware
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js'
@@ -32,6 +33,8 @@ app.get('/', (req, res) => {
 app.use('/api/v1/jobs', authenticateUser, jobRouter)
 
 app.use('/api/v1/auth', userRouter)
+
+app.use('/api/v1/users', currentUserRouter)
 
 app.use('*', (req, res) => {
 	res.status(404).json({ msg: 'not found' })
