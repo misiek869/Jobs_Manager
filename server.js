@@ -34,7 +34,7 @@ app.use('/api/v1/jobs', authenticateUser, jobRouter)
 
 app.use('/api/v1/auth', userRouter)
 
-app.use('/api/v1/users', currentUserRouter)
+app.use('/api/v1/users', authenticateUser, currentUserRouter)
 
 app.use('*', (req, res) => {
 	res.status(404).json({ msg: 'not found' })
