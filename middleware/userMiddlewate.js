@@ -16,3 +16,8 @@ export const authenticateUser = async (req, res, next) => {
 		throw new Unauthenticated('authentication invalid')
 	}
 }
+
+export const authorizePermissions = (...rest) => {
+	console.log(rest)
+	next()
+}
