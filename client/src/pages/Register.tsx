@@ -1,10 +1,17 @@
 import { Logo, FormRow } from '../components'
 import { Form, redirect, useNavigation, Link } from 'react-router-dom'
 
+export const action = async data => {
+	console.log(data)
+	return null
+}
+
 const Register = () => {
 	return (
 		<section className='min-h-screen grid place-items-center '>
-			<form className='w-[90vw] max-w-[400px]  rounded-sm shadow-md py-8 px-10 border'>
+			<Form
+				method='post'
+				className='w-[90vw] max-w-[400px]  rounded-sm shadow-md py-8 px-10 border'>
 				<div className='flex justify-center mb-6'>
 					<Logo />
 				</div>
@@ -35,7 +42,7 @@ const Register = () => {
 						Login
 					</Link>
 				</p>
-			</form>
+			</Form>
 		</section>
 	)
 }
