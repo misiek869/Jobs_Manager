@@ -2,6 +2,7 @@ import UserModel from '../models/UserModel.js'
 import { StatusCodes } from 'http-status-codes'
 import { hashedPassword, isPasswordMatch } from '../utils/passwordUtils.js'
 import { Unauthenticated } from '../errors/customErrors.js'
+import { createJWT } from '../utils/tokenUtils.js'
 
 export const registerUSer = async (req, res) => {
 	const isFirstUser = (await UserModel.countDocuments()) === 0
@@ -30,5 +31,7 @@ export const loginUser = async (req, res) => {
 		throw new Unauthenticated('invalid credentials')
 	}
 
-	res.send('logged in')
+	const token = createJWT({ userId: user._id, role: user.role })
+
+	res.send({ toke: token })
 }
