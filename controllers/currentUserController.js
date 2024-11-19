@@ -5,8 +5,8 @@ import UserModel from '../models/UserModel.js'
 
 export const getCurrentUser = async (req, res) => {
 	const user = await UserModel.findOne({ _id: req.user.userId })
-
-	res.status(StatusCodes.OK).json({ user })
+	const userWithoutPassword = user.toJSON()
+	res.status(StatusCodes.OK).json({ user: userWithoutPassword })
 }
 
 export const getAppStats = async (req, res) => {
