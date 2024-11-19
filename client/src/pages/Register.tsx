@@ -1,6 +1,5 @@
-import React from 'react'
 import { Logo, FormRow } from '../components'
-import { Link } from 'react-router-dom'
+import { Form, redirect, useNavigation, Link } from 'react-router-dom'
 
 const Register = () => {
 	return (
