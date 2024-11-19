@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-export const crateJWT = payload => {
+export const createJWT = payload => {
 	const token = jwt.sign(payload, 'secret', {
 		expiresIn: '1d',
 	})
