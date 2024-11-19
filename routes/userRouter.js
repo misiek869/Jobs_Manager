@@ -1,11 +1,14 @@
 import { Router } from 'express'
-import { validateRegisterUser } from '../middleware/validationMiddleware.js'
+import {
+	validateRegisterUser,
+	validateLoginUser,
+} from '../middleware/validationMiddleware.js'
 
 const router = Router()
 
 import { registerUSer, loginUser } from '../controllers/userController.js'
 
 router.post('/register', validateRegisterUser, registerUSer)
-router.post('/login', loginUser)
+router.post('/login', validateLoginUser, loginUser)
 
 export default router
