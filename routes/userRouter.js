@@ -6,9 +6,14 @@ import {
 
 const router = Router()
 
-import { registerUSer, loginUser } from '../controllers/userController.js'
+import {
+	registerUSer,
+	loginUser,
+	logout,
+} from '../controllers/userController.js'
 
 router.post('/register', validateRegisterUser, registerUSer)
 router.post('/login', validateLoginUser, loginUser)
+router.get('/logout', logout)
 
 export default router
