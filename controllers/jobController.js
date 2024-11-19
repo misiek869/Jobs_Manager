@@ -8,17 +8,14 @@ let jobs = [
 ]
 
 export const getAllJobs = async (req, res) => {
-	const jobs = await JobModel.find({})
+	const jobs = await JobModel.find({ createdBy: req.user.userId })
 	res.status(StatusCodes.OK).json({ jobs })
 }
 
 export const createJob = async (req, res) => {
-	const { company, position } = req.body
+	req.body.createdBy = req.user.userId
 
-	const job = await JobModel.create({
-		company,
-		position,
-	})
+	const job = await JobModel.create(req.body)
 
 	res.status(StatusCodes.CREATED).json({ job })
 }
