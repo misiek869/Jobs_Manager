@@ -1,4 +1,4 @@
-import { Unauthenticated } from '../errors/customErrors.js'
+import { Unauthenticated, Unauthorized } from '../errors/customErrors.js'
 import { verifyJWT } from '../utils/tokenUtils.js'
 
 export const authenticateUser = async (req, res, next) => {
@@ -18,6 +18,10 @@ export const authenticateUser = async (req, res, next) => {
 }
 
 export const authorizePermissions = (...rest) => {
-	console.log(rest)
-	next()
+	return (req, res, next) => {
+		if (!rest.includes(req.user.role)) {
+			throw new Unauthorized(`You can't access this route `)
+		}
+		next()
+	}
 }
