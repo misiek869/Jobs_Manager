@@ -1,7 +1,7 @@
 import UserModel from '../models/UserModel.js'
 import { StatusCodes } from 'http-status-codes'
-import bcrypt from 'bcryptjs'
 import { hashedPassword } from '../utils/passwordUtils.js'
+
 export const registerUSer = async (req, res) => {
 	const isFirstUser = (await UserModel.countDocuments()) === 0
 
