@@ -15,7 +15,15 @@ export const action = async ({ request }) => {
 	}
 }
 
+const btnStyle =
+	'cursor-pointer text-white bg-orange-700 rounded-sm tracking-wider py-3 px-4 shadow-sm duration-300 capitalize block hover:bg-orange-800 w-full mb-6 hover:shadow-lg'
+
 const Register = () => {
+	const navigation = useNavigation()
+	console.log(navigation)
+
+	const isSubmitting = navigation.state === 'submitting'
+
 	return (
 		<section className='min-h-screen grid place-items-center '>
 			<Form
@@ -53,8 +61,8 @@ const Register = () => {
 					name={'password'}
 				/>
 
-				<button className='' type='submit'>
-					submit
+				<button className={btnStyle} type='submit' disabled={isSubmitting}>
+					{isSubmitting ? 'submitting...' : 'submit'}
 				</button>
 				<p className='mt-4 text-center leading-6'>
 					Are You a Member?
