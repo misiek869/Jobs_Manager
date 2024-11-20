@@ -1,5 +1,14 @@
 import { Logo, FormRow } from '../components'
-import { Link } from 'react-router-dom'
+import { Link, Form, redirect, useNavigation } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import customFetch from '../utils/customFetch'
+
+export const action = async ({ request }) => {
+	const formData = await request.formData()
+	const data = Object.fromEntries(formData)
+
+	console.log(data)
+}
 
 const btnStyle =
 	'cursor-pointer text-white bg-orange-700 rounded-sm tracking-wider py-3 px-4 shadow-sm duration-300 capitalize block hover:bg-orange-800 w-full mb-6 hover:shadow-lg'
@@ -7,7 +16,9 @@ const btnStyle =
 const Login = () => {
 	return (
 		<section className='min-h-screen grid place-items-center '>
-			<form className='w-[90vw] max-w-[400px]  rounded-sm shadow-md py-8 px-10 border'>
+			<Form
+				method='post'
+				className='w-[90vw] max-w-[400px]  rounded-sm shadow-md py-8 px-10 border'>
 				<div className='flex justify-center mb-6'>
 					<Logo />
 				</div>
@@ -37,7 +48,7 @@ const Login = () => {
 						Register
 					</Link>
 				</p>
-			</form>
+			</Form>
 		</section>
 	)
 }
