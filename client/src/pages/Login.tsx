@@ -57,7 +57,7 @@ const Login = () => {
 					disabled={isLogging}
 					className={`${btnStyle} mt-12 disabled:opacity-65`}
 					type='submit'>
-					submit
+					{isLogging ? 'logging...' : 'log in'}
 				</button>
 
 				<button
@@ -68,7 +68,7 @@ const Login = () => {
 				</button>
 
 				<p className='mt-4 text-center leading-6'>
-					Are You a Member?
+					Not a Member?
 					<Link
 						className='text-orange-700 tracking-wider ml-1'
 						to={'/register'}>
