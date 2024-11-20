@@ -1,9 +1,18 @@
 import { Logo, FormRow } from '../components'
 import { Form, redirect, useNavigation, Link } from 'react-router-dom'
+import customFetch from '../utils/customFetch'
 
-export const action = async data => {
-	console.log(data)
-	return null
+export const action = async ({ request }) => {
+	const formData = await request.formData()
+	const data = Object.fromEntries(formData)
+
+	try {
+		await customFetch.post('/auth/register', data)
+		return redirect('/login')
+	} catch (error) {
+		console.log(error)
+		return error
+	}
 }
 
 const Register = () => {
@@ -26,12 +35,23 @@ const Register = () => {
 				/>
 
 				<FormRow
+					type={'text'}
+					name={'location'}
+					defaultValue={'my city'}
+					labelText={'location'}
+				/>
+
+				<FormRow
 					type={'email'}
 					defaultValue={'michal@michal.pl'}
 					name={'email'}
 				/>
 
-				<FormRow type={'password'} defaultValue={'123'} name={'password'} />
+				<FormRow
+					type={'password'}
+					defaultValue={'secret123'}
+					name={'password'}
+				/>
 
 				<button className='' type='submit'>
 					submit
