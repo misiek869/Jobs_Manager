@@ -1,10 +1,11 @@
 import { createContext, useContext, useState } from 'react'
-import { Outlet, redirect } from 'react-router-dom'
+import { Outlet, redirect, useNavigate } from 'react-router-dom'
 import { Navbar, SidebarBig, SidebarSmall } from '../components'
 import { checkDefaultTheme } from '../App'
 import { json } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { useLoaderData } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 // type CustomError = {
 // 	response?: {
@@ -14,7 +15,7 @@ import { useLoaderData } from 'react-router-dom'
 // 	}
 // }
 
-export const loader = async () => {
+export const loader = async (): Promise<{ user: User }> => {
 	try {
 		const { data } = await customFetch.get('/users/current-user')
 		return data
@@ -55,11 +56,8 @@ const defaultContextValue: DashboardContextType = {
 const DashboardContext = createContext(defaultContextValue)
 
 const DashboardLayout = () => {
-	// const user: User = { name: 'michael' }
-
-	const { user }: User = useLoaderData()
-	console.log(user)
-
+	const { user } = useLoaderData() as { user: User }
+	const navigate = useNavigate()
 	const [showSidebar, setShowSidebar] = useState<boolean>(false)
 	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(checkDefaultTheme())
 
@@ -77,7 +75,9 @@ const DashboardLayout = () => {
 	}
 
 	const logoutUser = async () => {
-		console.log('logout user')
+		navigate('/')
+		await customFetch.get('/auth/logout')
+		toast.success('Logged Out')
 	}
 
 	return (
