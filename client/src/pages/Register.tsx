@@ -2,8 +2,17 @@ import { Logo, FormRow } from '../components'
 import { Form, redirect, useNavigation, Link } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { toast } from 'react-toastify'
+import { ActionFunctionArgs } from 'react-router-dom'
 
-export const action = async ({ request }) => {
+interface CustomError {
+	response?: {
+		data?: {
+			msg?: string
+		}
+	}
+}
+
+export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData()
 	const data = Object.fromEntries(formData)
 
@@ -12,7 +21,8 @@ export const action = async ({ request }) => {
 		toast.success('Registration successful')
 		return redirect('/login')
 	} catch (error) {
-		toast.error(error?.response?.data?.msg)
+		const customError = error as CustomError
+		toast.error(customError.response?.data?.msg || 'An error occurred')
 		return error
 	}
 }
