@@ -72,7 +72,10 @@ const Register = () => {
 					name={'password'}
 				/>
 
-				<button className={btnStyle} type='submit' disabled={isSubmitting}>
+				<button
+					className={`${btnStyle} disabled:opacity-65`}
+					type='submit'
+					disabled={isSubmitting}>
 					{isSubmitting ? 'submitting...' : 'submit'}
 				</button>
 				<p className='mt-4 text-center leading-6'>
