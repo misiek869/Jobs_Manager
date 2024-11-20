@@ -32,7 +32,6 @@ const btnStyle =
 
 const Register = () => {
 	const navigation = useNavigation()
-	console.log(navigation)
 
 	const isSubmitting = navigation.state === 'submitting'
 
