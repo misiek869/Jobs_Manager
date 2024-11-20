@@ -1,21 +1,35 @@
-import React, { createContext, useContext, useState } from 'react'
-import { Outlet } from 'react-router-dom'
+import { createContext, useContext, useState } from 'react'
+import { Outlet, redirect } from 'react-router-dom'
 import { Navbar, SidebarBig, SidebarSmall } from '../components'
 import { checkDefaultTheme } from '../App'
 import { json } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
+import { useLoaderData } from 'react-router-dom'
+
+// type CustomError = {
+// 	response?: {
+// 		data?: {
+// 			msg?: string
+// 		}
+// 	}
+// }
 
 export const loader = async () => {
 	try {
-		const user = await customFetch.get('/users/current-user')
-		return json(user)
+		const { data } = await customFetch.get('/users/current-user')
+		return data
 	} catch (error) {
-		return null
+		return redirect('/')
 	}
 }
 
 type User = {
+	_id: string
 	name: string
+	email: string
+	lastName: string
+	location: string
+	role: string
 }
 
 type DashboardContextType = {
@@ -41,7 +55,10 @@ const defaultContextValue: DashboardContextType = {
 const DashboardContext = createContext(defaultContextValue)
 
 const DashboardLayout = () => {
-	const user: User = { name: 'michael' }
+	// const user: User = { name: 'michael' }
+
+	const { user }: User = useLoaderData()
+	console.log(user)
 
 	const [showSidebar, setShowSidebar] = useState<boolean>(false)
 	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(checkDefaultTheme())
@@ -81,7 +98,7 @@ const DashboardLayout = () => {
 					<div>
 						<Navbar />
 						<div className='w-[90vw] mx-auto py-8 lg:w-[90%]'>
-							<Outlet />
+							<Outlet context={{ user }} />
 						</div>
 					</div>
 				</main>
