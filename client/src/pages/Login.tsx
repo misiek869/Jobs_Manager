@@ -31,6 +31,10 @@ const btnStyle =
 	'cursor-pointer text-white bg-orange-700 rounded-sm tracking-wider py-3 px-4 shadow-sm duration-300 capitalize block hover:bg-orange-800 w-full mb-6 hover:shadow-lg'
 
 const Login = () => {
+	const navigation = useNavigation()
+
+	const isLogging = navigation.state === 'submitting'
+
 	return (
 		<section className='min-h-screen grid place-items-center '>
 			<Form
@@ -49,11 +53,17 @@ const Login = () => {
 
 				<FormRow type={'password'} defaultValue={'123'} name={'password'} />
 
-				<button className={`${btnStyle} mt-12`} type='submit'>
+				<button
+					disabled={isLogging}
+					className={`${btnStyle} mt-12 disabled:opacity-65`}
+					type='submit'>
 					submit
 				</button>
 
-				<button className={`${btnStyle}`} type='submit'>
+				<button
+					disabled={isLogging}
+					className={`${btnStyle} disabled:opacity-65`}
+					type='submit'>
 					demo
 				</button>
 
