@@ -2,6 +2,17 @@ import React, { createContext, useContext, useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Navbar, SidebarBig, SidebarSmall } from '../components'
 import { checkDefaultTheme } from '../App'
+import { json } from 'react-router-dom'
+import customFetch from '../utils/customFetch'
+
+export const loader = async () => {
+	try {
+		const user = await customFetch.get('/users/current-user')
+		return json(user)
+	} catch (error) {
+		return null
+	}
+}
 
 type User = {
 	name: string
