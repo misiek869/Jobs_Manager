@@ -14,6 +14,11 @@ const JOB_TYPE = {
 	INTERNSHIP: 'internship',
 }
 
+export const action = async ({ reqest }) => {
+	const formData = await reqest.formData()
+	console.log(formData)
+}
+
 const AddJob = () => {
 	const { user } = useOutletContext()
 	const navigation = useNavigation()
