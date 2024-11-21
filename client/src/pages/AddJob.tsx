@@ -45,7 +45,7 @@ const AddJob = () => {
 	const isSubmitting = navigation.state === 'submitting'
 
 	return (
-		<section className='w-full rounded-sm bg-red-300 pt-12 px-8 pb-16'>
+		<section className='w-full rounded-sm  border  pt-12 px-8 pb-16'>
 			<Form method='post' className='m-0 max-w-full w-full'>
 				<h4 className='capitalize mb-8'>add job</h4>
 				<div className='grid gap-y-4 md:grid-cols-[1fr,1fr] md:items-center md:gap-x-4 lg:grid-cols-[1fr,1fr,1fr]'>
@@ -69,8 +69,9 @@ const AddJob = () => {
 						defaultValue={JOB_TYPE.FULL_TIME}
 						list={Object.values(JOB_TYPE)}
 					/>
+
 					<button
-						className={`${btnStyle} mt-4 self-end	 grid place-items-center`}
+						className={`${btnStyle} self-end mt-4 grid place-items-center`}
 						type='submit'
 						disabled={isSubmitting}>
 						{' '}
