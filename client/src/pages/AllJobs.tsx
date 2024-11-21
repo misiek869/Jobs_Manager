@@ -1,15 +1,41 @@
+import { useLoaderData } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
+import { CustomActionError } from './Login'
+import { toast } from 'react-toastify'
+import { JobsContainer, SearchContainer } from '../components'
 
-export const loader = async () => {
+type Job = {
+	_id: string
+	createdAt: string
+	createdBy: string
+	jobLocation: string
+	jobStatus: string
+	jobType: string
+	position: string
+	updatedAt: string
+}
+
+export const loader = async (): Promise<[Job]> => {
 	try {
-		const data = await customFetch.get('/jobs')
-		console.log(data)
-		return data
-	} catch (error) {}
+		const { data } = await customFetch.get('/jobs')
+		return { data }
+	} catch (error) {
+		const customError = error as CustomActionError
+		toast.error(customError.response?.data?.msg || 'An error occurred')
+		return error
+	}
 }
 
 const AllJobs = () => {
-	return <div>AllJobs</div>
+	const { data } = useLoaderData()
+	console.log(data)
+
+	return (
+		<>
+			<SearchContainer />
+			<JobsContainer />
+		</>
+	)
 }
 
 export default AllJobs
