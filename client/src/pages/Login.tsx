@@ -4,7 +4,7 @@ import { toast } from 'react-toastify'
 import customFetch from '../utils/customFetch'
 import { ActionFunctionArgs } from 'react-router-dom'
 
-type CustomError = {
+export type CustomActionError = {
 	response?: {
 		data?: {
 			msg?: string
