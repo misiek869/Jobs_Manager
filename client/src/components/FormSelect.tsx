@@ -1,15 +1,9 @@
 import React from 'react'
 
-const JOB_STATUS = {
-	PENDING: 'pending',
-	INTERVIEW: 'interview',
-	DECLINED: 'declined',
-}
-
 type FormSelectProps = {
 	name: string
 	labelText: string
-	list: any
+	list: string[]
 	defaultValue?: string
 }
 

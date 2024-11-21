@@ -1,5 +1,5 @@
 import { Form, useNavigation, useOutletContext } from 'react-router-dom'
-import { FormRow } from '../components'
+import { FormRow, FormSelect } from '../components'
 import { btnStyle } from './Register'
 
 const JOB_STATUS = {
@@ -27,7 +27,12 @@ const AddJob = () => {
 						name='jobLocation'
 						defaultValue={user.location}
 					/>
-
+					<FormSelect
+						labelText='job status'
+						name='jobStatus'
+						defaultValue={JOB_STATUS.PENDING}
+						list={Object.values(JOB_STATUS)}
+					/>
 					<button
 						className={`${btnStyle} mt-4 self-end	 grid place-items-center`}
 						type='submit'
