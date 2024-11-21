@@ -1,7 +1,12 @@
 import { Form, useNavigation, useOutletContext } from 'react-router-dom'
 import { FormRow } from '../components'
 import { btnStyle } from './Register'
-import { JOB_STATUS, JOB_TYPE, JOB_SORT_BY } from '../../../utils/constans'
+
+const JOB_STATUS = {
+	PENDING: 'pending',
+	INTERVIEW: 'interview',
+	DECLINED: 'declined',
+}
 
 const AddJob = () => {
 	const { user } = useOutletContext()
@@ -23,18 +28,6 @@ const AddJob = () => {
 						defaultValue={user.location}
 					/>
 
-					<div className='mb-0'>
-						{/* form label */}
-						<label className='' htmlFor='jobStatus'>
-							job status
-						</label>
-						{/* form select */}
-						<select
-							name='jobStatus'
-							id='jobStatus'
-							className=''
-							defaultValue={JOB_STATUS.PENDING}></select>
-					</div>
 					<button
 						className={`${btnStyle} mt-4 self-end	 grid place-items-center`}
 						type='submit'
