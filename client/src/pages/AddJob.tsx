@@ -1,7 +1,15 @@
-import { Form, useNavigation, useOutletContext } from 'react-router-dom'
+import {
+	Form,
+	redirect,
+	useNavigation,
+	useOutletContext,
+} from 'react-router-dom'
 import { FormRow, FormSelect } from '../components'
 import { btnStyle } from './Register'
 import { ActionFunctionArgs } from 'react-router-dom'
+import { CustomActionError } from './Login'
+import { toast } from 'react-toastify'
+import customFetch from '../utils/customFetch'
 
 const JOB_STATUS = {
 	PENDING: 'pending',
@@ -19,11 +27,15 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData()
 	const data = Object.fromEntries(formData)
 
-	console.log(data)
-
 	try {
-	} catch (error) {}
-	return null
+		await customFetch.post('/jobs', data)
+		toast.success('Job Added')
+		return redirect('/all-jobs')
+	} catch (error) {
+		const customError = error as CustomActionError
+		toast.error(customError.response?.data?.msg || 'An error occurred')
+		return error
+	}
 }
 
 const AddJob = () => {
