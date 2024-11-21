@@ -27,7 +27,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	}
 }
 
-const btnStyle =
+export const btnStyle =
 	'cursor-pointer text-white bg-orange-700 rounded-sm tracking-wider py-3 px-4 shadow-sm duration-300 capitalize block hover:bg-orange-800 w-full mb-6 hover:shadow-lg'
 
 const Register = () => {
