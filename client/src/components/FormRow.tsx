@@ -14,7 +14,7 @@ const FormRow = ({ type, name, labelText, defaultValue }: FormRowProps) => {
 				{labelText || name}
 			</label>
 			<input
-				className='w-full py-2 px-3 rounded-sm border '
+				className='w-full py-2 px-3 rounded-sm border outline-none'
 				type={type}
 				required
 				id={name}
