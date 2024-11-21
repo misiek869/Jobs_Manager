@@ -30,7 +30,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 	try {
 		await customFetch.post('/jobs', data)
 		toast.success('Job Added')
-		return redirect('/all-jobs')
+		return redirect('all-jobs')
 	} catch (error) {
 		const customError = error as CustomActionError
 		toast.error(customError.response?.data?.msg || 'An error occurred')
