@@ -1,6 +1,7 @@
 import { Form, useNavigation, useOutletContext } from 'react-router-dom'
 import { FormRow, FormSelect } from '../components'
 import { btnStyle } from './Register'
+import { ActionFunctionArgs } from 'react-router-dom'
 
 const JOB_STATUS = {
 	PENDING: 'pending',
@@ -14,9 +15,15 @@ const JOB_TYPE = {
 	INTERNSHIP: 'internship',
 }
 
-export const action = async ({ reqest }) => {
-	const formData = await reqest.formData()
-	console.log(formData)
+export const action = async ({ request }: ActionFunctionArgs) => {
+	const formData = await request.formData()
+	const data = Object.fromEntries(formData)
+
+	console.log(data)
+
+	try {
+	} catch (error) {}
+	return null
 }
 
 const AddJob = () => {
@@ -45,8 +52,8 @@ const AddJob = () => {
 						list={Object.values(JOB_STATUS)}
 					/>
 					<FormSelect
-						labelText='job status'
-						name='jobStatus'
+						labelText='job type'
+						name='jobType'
 						defaultValue={JOB_TYPE.FULL_TIME}
 						list={Object.values(JOB_TYPE)}
 					/>
