@@ -8,6 +8,12 @@ const JOB_STATUS = {
 	DECLINED: 'declined',
 }
 
+const JOB_TYPE = {
+	FULL_TIME: 'full-time',
+	PART_TIME: 'part-time',
+	INTERNSHIP: 'internship',
+}
+
 const AddJob = () => {
 	const { user } = useOutletContext()
 	const navigation = useNavigation()
@@ -32,6 +38,12 @@ const AddJob = () => {
 						name='jobStatus'
 						defaultValue={JOB_STATUS.PENDING}
 						list={Object.values(JOB_STATUS)}
+					/>
+					<FormSelect
+						labelText='job status'
+						name='jobStatus'
+						defaultValue={JOB_TYPE.FULL_TIME}
+						list={Object.values(JOB_TYPE)}
 					/>
 					<button
 						className={`${btnStyle} mt-4 self-end	 grid place-items-center`}
