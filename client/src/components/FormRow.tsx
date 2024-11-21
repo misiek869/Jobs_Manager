@@ -1,7 +1,7 @@
 type FormRowProps = {
 	type: string
 	name: string
-	defaultValue: string
+	defaultValue?: string
 	labelText?: string
 }
 
