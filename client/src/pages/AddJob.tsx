@@ -1,7 +1,7 @@
 import { Form, useNavigation, useOutletContext } from 'react-router-dom'
 import { FormRow } from '../components'
 import { btnStyle } from './Register'
-import { JOB_STATUS } from '../../../utils/constans'
+import { JOB_STATUS, JOB_TYPE, JOB_SORT_BY } from '../../../utils/constans'
 
 const AddJob = () => {
 	const { user } = useOutletContext()
