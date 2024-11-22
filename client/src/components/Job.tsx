@@ -2,6 +2,7 @@ import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa'
 import day from 'dayjs'
 import JobInfo from './JobInfo'
 import { Form, Link } from 'react-router-dom'
+import { btnStyle } from '../pages/Register'
 
 const Job = ({
 	_id,
@@ -37,12 +38,14 @@ const Job = ({
 					</div>
 				</div>
 				<footer className='mt-4 flex items-center'>
-					<Link className='h-[30px] text-xl flex items-center mr-2' to={'/'}>
+					<Link
+						className={`${btnStyle} h-[30px] text-xl flex items-center mr-2 mb-0`}
+						to={'/'}>
 						Edit
 					</Link>
 					<Form>
 						<button
-							className='h-[30px] text-xl flex items-center'
+							className={`${btnStyle} h-[30px] text-xl flex items-center mb-0`}
 							type='submit'>
 							Delete
 						</button>
