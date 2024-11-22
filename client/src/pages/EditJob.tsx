@@ -9,8 +9,9 @@ export const loader = async ({ params }) => {
 		console.log(data)
 		return null
 	} catch (error) {
-		toast.error('')
-		return null
+		const customError = error as CustomActionError
+		toast.error(customError.response?.data?.msg || 'An error occurred')
+		return error
 	}
 }
 
