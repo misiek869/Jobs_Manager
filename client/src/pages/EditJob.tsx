@@ -1,7 +1,7 @@
 import {
 	redirect,
 	useLoaderData,
-	useParams,
+	// useParams,
 	Form,
 	useNavigation,
 } from 'react-router-dom'
@@ -23,7 +23,6 @@ export const loader = async ({
 }: LoaderFunctionArgs): Promise<JobData> => {
 	try {
 		const { data } = await customFetch.get(`/jobs/${params.id}`)
-		console.log(data)
 		return data
 	} catch (error) {
 		const customError = error as CustomActionError
@@ -32,8 +31,19 @@ export const loader = async ({
 	}
 }
 
-export const action = async => {
-	return null
+export const action = async ({ request, params }: ActionFunctionArgs) => {
+	const formData = await request.formData()
+	const data = Object.fromEntries(formData)
+
+	try {
+		await customFetch.patch(`/jobs/${params.id}`, data)
+		toast.success('Job Updated')
+		return redirect('/dashboard/all-jobs')
+	} catch (error) {
+		const customError = error as CustomActionError
+		toast.error(customError.response?.data?.msg || 'An error occurred')
+		return error
+	}
 }
 
 const EditJob = () => {
