@@ -58,6 +58,7 @@ const router = createBrowserRouter([
 					{ path: 'all-jobs', loader: getAllJobsLoader, element: <AllJobs /> },
 					{ path: 'profile', element: <Profile /> },
 					{ path: 'admin', element: <Admin /> },
+					{ path: 'edit-job', element: <EditJob /> },
 				],
 			},
 		],
