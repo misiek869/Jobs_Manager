@@ -4,7 +4,6 @@ import {
 	Admin,
 	AllJobs,
 	DashboardLayout,
-	DeleteJob,
 	EditJob,
 	Error,
 	HomeLayout,
