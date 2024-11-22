@@ -32,14 +32,18 @@ const Job = ({
 					<JobInfo icon={<FaCalendarAlt />} text={date} />
 					<JobInfo icon={<FaBriefcase />} text={jobType} />
 					{/* dynamic */}
-					<div className=''>{jobStatus}</div>
+					<div className='rounded-sm capitalize tracking-wider text-center w-[100px] h-[30px] grid items-center'>
+						{jobStatus}
+					</div>
 				</div>
-				<footer className=''>
-					<Link className='' to={'/'}>
+				<footer className='mt-4 flex items-center'>
+					<Link className='h-[30px] text-xl flex items-center mr-2' to={'/'}>
 						Edit
 					</Link>
 					<Form>
-						<button className='' type='submit'>
+						<button
+							className='h-[30px] text-xl flex items-center'
+							type='submit'>
 							Delete
 						</button>
 					</Form>
