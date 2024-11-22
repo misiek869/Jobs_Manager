@@ -54,7 +54,7 @@ const Job = ({
 				<footer className='mt-4 flex items-center'>
 					<Link
 						className={`${btnStyle} h-[30px] bg-white text-stone-900  text-xl flex items-center mr-2 mb-0`}
-						to={`/dashboard/edit-job${_id}`}>
+						to={`/dashboard/edit-job/${_id}`}>
 						Edit
 					</Link>
 					<Form>
