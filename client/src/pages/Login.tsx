@@ -21,7 +21,7 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 		toast.success('Logged In')
 		return redirect('/dashboard')
 	} catch (error) {
-		const customError = error as CustomError
+		const customError = error as CustomActionError
 		toast.error(customError.response?.data?.msg || 'An error occurred')
 		return error
 	}
