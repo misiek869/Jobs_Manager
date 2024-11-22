@@ -67,6 +67,7 @@ const router = createBrowserRouter([
 						action: editJobAction,
 						element: <EditJob />,
 					},
+					{ path: 'delete-job/:id' },
 				],
 			},
 		],
