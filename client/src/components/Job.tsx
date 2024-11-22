@@ -26,7 +26,7 @@ const Job = ({
 	const date = day(createdAt).format('MMM Do, YYYY')
 
 	return (
-		<article className='border bg-orange-700 rounded-sm grid grid-rows-[1fr,auto] shadow-md'>
+		<article className='border bg-orange-700 rounded-xl grid grid-rows-[1fr,auto] shadow-md'>
 			<header className='py-4 px-6 border-b grid grid-cols-[auto,1fr] items-center'>
 				<div className='w-[60px] h-[60px] grid place-items-center bg-white rounded-sm text-3xl font-semibold uppercase text-stone-900 mr-8'>
 					{company.charAt(0)}
@@ -54,7 +54,7 @@ const Job = ({
 				<footer className='mt-4 flex items-center'>
 					<Link
 						className={`${btnStyle} h-[30px] bg-white text-stone-900  text-xl flex items-center mr-2 mb-0`}
-						to={'/'}>
+						to={`/dashboard/edit-job${_id}`}>
 						Edit
 					</Link>
 					<Form>
