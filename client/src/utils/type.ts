@@ -5,3 +5,14 @@ export type CustomActionError = {
 		}
 	}
 }
+
+export type Job = {
+	_id: string
+	createdAt: string
+	createdBy: string
+	jobLocation: string
+	jobStatus: string
+	jobType: string
+	position: string
+	updatedAt: string
+}
