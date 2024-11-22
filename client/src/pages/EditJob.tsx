@@ -1,18 +1,25 @@
-import { redirect, useLoaderData, useParams } from 'react-router-dom'
+import {
+	redirect,
+	useLoaderData,
+	useParams,
+	Form,
+	useNavigation,
+} from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { toast } from 'react-toastify'
 import { CustomActionError, JobType } from '../utils/type'
 import { LoaderFunctionArgs } from 'react-router-dom'
 import { ActionFunctionArgs } from 'react-router-dom'
+import { FormRow, FormSelect } from '../components'
+import { JOB_STATUS, JOB_TYPE } from '../utils/type'
 
 type JobData = {
-	job: JobType // Typ dla obiektu job
+	job: JobType
 }
 
 export const loader = async ({
 	params,
 }: LoaderFunctionArgs): Promise<JobData> => {
-	console.log(params)
 	try {
 		const { data } = await customFetch.get(`/jobs/${params.id}`)
 		console.log(data)
@@ -30,10 +37,45 @@ export const action = async => {
 
 const EditJob = () => {
 	// const params = useParams()
-	const { job } = useLoaderData()
-	// console.log(job)
+	const { job } = useLoaderData() as JobData
 
-	return <div>EditJob</div>
+	const navigation = useNavigation()
+
+	const isSubmitting = navigation.state === 'submitting'
+
+	return (
+		<>
+			<Form method='post' className=''>
+				<h4 className=''>edit job</h4>
+				{/* form center */}
+				<div className=''>
+					<FormRow type='text' name='position' defaultValue={job.position} />
+					<FormRow type='text' name='company' defaultValue={job.company} />
+					<FormRow
+						type='text'
+						name='jobLocation'
+						labelText='job location'
+						defaultValue={job.jobLocation}
+					/>
+					<FormSelect
+						name='jobStatus'
+						labelText='job status'
+						defaultValue={job.jobStatus}
+						list={Object.values(JOB_STATUS)}
+					/>
+					<FormSelect
+						name='jobType'
+						labelText='job type'
+						defaultValue={job.jobType}
+						list={Object.values(JOB_TYPE)}
+					/>
+					<button type='submit' className='' disabled={isSubmitting}>
+						{isSubmitting ? 'submitting..' : 'submit'}
+					</button>
+				</div>
+			</Form>
+		</>
+	)
 }
 
 export default EditJob
