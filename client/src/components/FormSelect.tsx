@@ -24,7 +24,7 @@ const FormSelect = ({
 			<select
 				name={name}
 				id={name}
-				className='w-full py-[0.375rem] px-3 outline-none rounded-sm border'
+				className='w-full py-[0.375rem] px-3 outline-none rounded-sm border text-gray-900'
 				defaultValue={defaultValue}>
 				{list.map(item => {
 					return (

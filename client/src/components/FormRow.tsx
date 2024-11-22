@@ -10,11 +10,11 @@ const FormRow = ({ type, name, labelText, defaultValue }: FormRowProps) => {
 		<div className='mb-4'>
 			<label
 				htmlFor={name}
-				className='block text-gray-900 text-lg mb-3 capitalize tracking-wider leading-6'>
+				className='block text-lg mb-3 capitalize tracking-wider leading-6'>
 				{labelText || name}
 			</label>
 			<input
-				className='w-full py-2 px-3 rounded-sm border outline-none'
+				className='w-full py-2 px-3 rounded-sm border outline-none text-gray-900'
 				type={type}
 				required
 				id={name}
