@@ -4,6 +4,16 @@ import JobInfo from './JobInfo'
 import { Form, Link } from 'react-router-dom'
 import { btnStyle } from '../pages/Register'
 
+type JobProps = {
+	_id: string
+	position: string
+	company: string
+	jobLocation: string
+	jobType: string
+	createdAt: string
+	jobStatus: string
+}
+
 const Job = ({
 	_id,
 	position,
@@ -12,7 +22,7 @@ const Job = ({
 	jobType,
 	createdAt,
 	jobStatus,
-}) => {
+}: JobProps) => {
 	const date = day(createdAt).format('MMM Do, YYYY')
 
 	return (
