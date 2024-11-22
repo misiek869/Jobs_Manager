@@ -16,3 +16,12 @@ export type JobType = {
 	position: string
 	updatedAt: string
 }
+
+export type User = {
+	_id: string
+	name: string
+	email: string
+	lastName: string
+	location: string
+	role: string
+}
