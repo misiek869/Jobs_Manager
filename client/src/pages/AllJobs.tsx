@@ -3,6 +3,7 @@ import customFetch from '../utils/customFetch'
 import { CustomActionError } from './Login'
 import { toast } from 'react-toastify'
 import { JobsContainer, SearchContainer } from '../components'
+import { createContext, useContext } from 'react'
 
 type Job = {
 	_id: string
@@ -26,16 +27,22 @@ export const loader = async (): Promise<[Job]> => {
 	}
 }
 
+type AllJobsContextType = {}
+
+const AllJobsContext = createContext()
+
 const AllJobs = () => {
 	const { data } = useLoaderData()
 	console.log(data)
 
 	return (
-		<>
+		<AllJobsContext.Provider value={{ data }}>
 			<SearchContainer />
-			<JobsContainer context={ user } />
-		</>
+			<JobsContainer />
+		</AllJobsContext.Provider>
 	)
 }
+
+export const useAllJobsContext = () => useContext(AllJobsContext)
 
 export default AllJobs
