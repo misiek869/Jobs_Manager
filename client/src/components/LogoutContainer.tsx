@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDashboardContext } from '../pages/DashboardLayout'
 
 const btnStyle =
-	'cursor-pointer text-white bg-orange-700 border-none rounded-sm tracking-wider py-3 px-4 shadow-sm duration-300 capitalize inline-block hover:bg-orange-800 hover:shadow-lg'
+	'cursor-pointer text-white bg-orange-800 border-none rounded-sm tracking-wider py-3 px-4 shadow-sm duration-300 capitalize inline-block hover:bg-orange-800 hover:shadow-lg'
 
 const LogoutContainer = () => {
 	const [showLogout, setShowLogout] = useState<boolean>(false)
@@ -26,7 +26,7 @@ const LogoutContainer = () => {
 				}`}>
 				<button
 					type='button'
-					className='p-2 bg-transparent font-medium tracking-wider text-white w-full h-full cursor-pointer capitalize'
+					className='p-2 bg-orange-800 font-medium tracking-wider text-white w-full h-full cursor-pointer capitalize'
 					onClick={logoutUser}>
 					logout
 				</button>
