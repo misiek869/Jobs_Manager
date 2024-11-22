@@ -4,19 +4,9 @@ import { CustomActionError } from '../utils/type'
 import { toast } from 'react-toastify'
 import { JobsContainer, SearchContainer } from '../components'
 import { createContext, useContext } from 'react'
+import { JobType } from '../utils/type'
 
-type Job = {
-	_id: string
-	createdAt: string
-	createdBy: string
-	jobLocation: string
-	jobStatus: string
-	jobType: string
-	position: string
-	updatedAt: string
-}
-
-export const loader = async (): Promise<[Job]> => {
+export const loader = async (): Promise<[JobType]> => {
 	try {
 		const { data } = await customFetch.get('/jobs')
 		return { data }
@@ -28,7 +18,7 @@ export const loader = async (): Promise<[Job]> => {
 }
 
 type AllJobsContextType = {
-	data: Job
+	data: JobType
 }
 
 const defaultContextValue: AllJobsContextType = {
