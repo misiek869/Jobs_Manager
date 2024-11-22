@@ -6,7 +6,7 @@ export type CustomActionError = {
 	}
 }
 
-export type Job = {
+export type JobType = {
 	_id: string
 	createdAt: string
 	createdBy: string
