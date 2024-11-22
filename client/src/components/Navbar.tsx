@@ -20,7 +20,9 @@ const Navbar = () => {
 					<div className='flex items-center lg:hidden'>
 						<Logo />
 					</div>
-					<h4 className='hidden mx-auto text-white lg:block'>dashboard</h4>
+					<h4 className='hidden mx-auto text-3xl text-white lg:block'>
+						dashboard
+					</h4>
 				</div>
 				<div className='flex items-center'>
 					{/* <ThemeToggle /> */}
