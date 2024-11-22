@@ -27,9 +27,15 @@ export const loader = async (): Promise<[Job]> => {
 	}
 }
 
-type AllJobsContextType = {}
+type AllJobsContextType = {
+	data: Job
+}
 
-const AllJobsContext = createContext()
+const defaultContextValue: AllJobsContextType = {
+	data: null,
+}
+
+const AllJobsContext = createContext(defaultContextValue)
 
 const AllJobs = () => {
 	const { data } = useLoaderData()
