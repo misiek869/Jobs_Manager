@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
-import { CustomActionError } from './Login'
+import { CustomActionError } from '../utils/type'
 import { toast } from 'react-toastify'
 import { JobsContainer, SearchContainer } from '../components'
 import { createContext, useContext } from 'react'

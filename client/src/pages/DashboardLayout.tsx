@@ -7,14 +7,6 @@ import customFetch from '../utils/customFetch'
 import { useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-// type CustomError = {
-// 	response?: {
-// 		data?: {
-// 			msg?: string
-// 		}
-// 	}
-// }
-
 export const loader = async (): Promise<{ user: User }> => {
 	try {
 		const { data } = await customFetch.get('/users/current-user')

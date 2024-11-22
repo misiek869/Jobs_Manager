@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { toast } from 'react-toastify'
-import { CustomActionError } from './Login'
+import { CustomActionError } from '../utils/type'
 
 export const loader = async ({ params }) => {
 	try {

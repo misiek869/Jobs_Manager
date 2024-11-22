@@ -3,7 +3,7 @@ import { Form, redirect, useNavigation, Link } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { toast } from 'react-toastify'
 import { ActionFunctionArgs } from 'react-router-dom'
-import { CustomActionError } from './Login'
+import { CustomActionError } from '../utils/type'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData()
