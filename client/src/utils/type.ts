@@ -8,13 +8,15 @@ export type CustomActionError = {
 
 export type JobType = {
 	_id: string
+	company: string
 	createdAt: string
 	createdBy: string
 	jobLocation: string
-	jobStatus: string
-	jobType: string
+	jobStatus: 'pending' | 'approved' | 'rejected'
+	jobType: 'full-time' | 'part-time' | 'internship'
 	position: string
 	updatedAt: string
+	__v: number
 }
 
 export type UserType = {
