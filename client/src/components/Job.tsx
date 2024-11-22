@@ -57,7 +57,7 @@ const Job = ({
 						to={`/dashboard/edit-job/${_id}`}>
 						Edit
 					</Link>
-					<Form>
+					<Form method='post' action={`/dashboard/delete-job/${_id}`}>
 						<button
 							className={`${btnStyle} h-[30px] bg-white text-stone-900  text-xl flex items-center mb-0`}
 							type='submit'>
