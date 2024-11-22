@@ -15,8 +15,8 @@ const NavLinks = ({ isBigSidebar }: { isBigSidebar: boolean }) => {
 						key={text}
 						className={
 							isBigSidebar
-								? 'flex items-center mx-12 py-4 capitalize text-xl tracking-wider font-semibold  text-slate-900 hover:text-orange-800 duration-200'
-								: 'flex items-center justify-center py-4 capitalize text-xl tracking-wider font-semibold  text-slate-900 hover:text-orange-800 duration-200'
+								? 'flex items-center mx-12 py-4 capitalize text-xl tracking-wider font-semibold  text-white hover:text-orange-900 duration-200'
+								: 'flex items-center justify-center py-4 capitalize text-xl tracking-wider font-semibold  text-slate-900 hover:text-orange-900 duration-200'
 						}
 						onClick={!isBigSidebar ? toggleSidebar : undefined}
 						end>
