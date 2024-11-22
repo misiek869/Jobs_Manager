@@ -8,7 +8,7 @@ import { useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { UserType } from '../utils/type'
 
-export const loader = async (): Promise<{ user: User }> => {
+export const loader = async (): Promise<{ user: UserType }> => {
 	try {
 		const { data } = await customFetch.get('/users/current-user')
 		return data
@@ -17,17 +17,8 @@ export const loader = async (): Promise<{ user: User }> => {
 	}
 }
 
-type User = {
-	_id: string
-	name: string
-	email: string
-	lastName: string
-	location: string
-	role: string
-}
-
 type DashboardContextType = {
-	user: User | null
+	user: UserType | null
 	showSidebar: boolean
 	isDarkTheme: boolean
 	toggleDarkTheme: () => void
@@ -49,7 +40,7 @@ const defaultContextValue: DashboardContextType = {
 const DashboardContext = createContext(defaultContextValue)
 
 const DashboardLayout = () => {
-	const { user } = useLoaderData() as { user: User }
+	const { user } = useLoaderData() as { user: UserType }
 	const navigate = useNavigate()
 	const [showSidebar, setShowSidebar] = useState<boolean>(false)
 	const [isDarkTheme, setIsDarkTheme] = useState<boolean>(checkDefaultTheme())
