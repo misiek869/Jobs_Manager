@@ -1,6 +1,11 @@
 import React from 'react'
 
-const JobInfo = ({ icon, text }) => {
+type JobInfoProps = {
+	icon: React.ReactNode
+	text: string
+}
+
+const JobInfo = ({ icon, text }: JobInfoProps) => {
 	return (
 		<div className='flex items-center'>
 			<span className='text-[1rem] mr-4 flex items-center text-orange-700'>
