@@ -6,6 +6,7 @@ import { json } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { useLoaderData } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { UserType } from '../utils/type'
 
 export const loader = async (): Promise<{ user: User }> => {
 	try {
