@@ -92,7 +92,7 @@ const DashboardLayout = () => {
 				setIsDarkTheme,
 			}}>
 			<section>
-				<main className='grid grid-cols-[1fr] lg:grid-cols-[auto,1fr] '>
+				<main className='grid grid-cols-[1fr] lg:grid-cols-[auto,1fr] bg-slate-50'>
 					<SidebarSmall />
 					<SidebarBig />
 					<div>
