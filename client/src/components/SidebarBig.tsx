@@ -6,10 +6,10 @@ const SidebarBig = () => {
 	const { showSidebar } = useDashboardContext()
 
 	const sidebarContainerStyles =
-		'bg-white min-h-screen h-full w-[250px] ml-[-250px] duration-300'
+		'bg-orange-700 min-h-screen h-full w-[250px] ml-[-250px] duration-300'
 
 	return (
-		<aside className='text-xl border-r hidden lg:block'>
+		<aside className='text-xl hidden lg:block'>
 			<div
 				className={
 					showSidebar
