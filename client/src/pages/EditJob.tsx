@@ -44,7 +44,7 @@ const EditJob = () => {
 	const isSubmitting = navigation.state === 'submitting'
 
 	return (
-		<>
+		<section className='rounded-xl bg-orange-700  w-full'>
 			<Form method='post' className=''>
 				<h4 className=''>edit job</h4>
 				{/* form center */}
@@ -74,7 +74,7 @@ const EditJob = () => {
 					</button>
 				</div>
 			</Form>
-		</>
+		</section>
 	)
 }
 
