@@ -33,7 +33,7 @@ const AllJobs = () => {
 	return (
 		<>
 			<SearchContainer />
-			<JobsContainer />
+			<JobsContainer context={ user } />
 		</>
 	)
 }
