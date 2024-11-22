@@ -16,7 +16,7 @@ const FormSelect = ({
 	return (
 		<div className='mb-0'>
 			<label
-				className='block text-lg mb-3 capitalize tracking-wider leading-6 '
+				className='block text-lg mb-3 capitalize tracking-wider leading-6 text-gray-900'
 				htmlFor={name}>
 				{labelText || name}
 			</label>
