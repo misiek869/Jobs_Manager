@@ -1,4 +1,4 @@
-const StatItem = ({ count, title, icon, bcg }) => {
+const StatItem = ({ count, title, icon, bcg, color }) => {
 	return (
 		<>
 			<header className=''>

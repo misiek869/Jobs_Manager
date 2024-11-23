@@ -2,6 +2,8 @@ import { redirect, useLoaderData } from 'react-router-dom'
 import customFetch from '../utils/customFetch'
 import { CustomActionError } from '../utils/type'
 import { toast } from 'react-toastify'
+import { FaSuitcaseRolling, FaCalendarCheck } from 'react-icons/fa'
+import { StatItem } from '../components'
 
 export const loader = async () => {
 	try {
@@ -17,7 +19,24 @@ export const loader = async () => {
 const Admin = () => {
 	const { users, jobs } = useLoaderData()
 
-	return <div>Admin</div>
+	return (
+		<>
+			<StatItem
+				title='current users'
+				count={users}
+				color=''
+				bcg=''
+				icon={<FaSuitcaseRolling />}
+			/>
+			<StatItem
+				title='total jobs'
+				count={jobs}
+				color=''
+				bcg=''
+				icon={<FaSuitcaseRolling />}
+			/>
+		</>
+	)
 }
 
 export default Admin
