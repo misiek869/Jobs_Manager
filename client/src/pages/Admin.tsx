@@ -24,16 +24,16 @@ const Admin = () => {
 			<StatItem
 				title='current users'
 				count={users}
-				color=''
+				color='#0081A7'
 				bcg=''
 				icon={<FaSuitcaseRolling />}
 			/>
 			<StatItem
 				title='total jobs'
 				count={jobs}
-				color=''
+				color='#E4B363'
 				bcg=''
-				icon={<FaSuitcaseRolling />}
+				icon={<FaCalendarCheck />}
 			/>
 		</section>
 	)
