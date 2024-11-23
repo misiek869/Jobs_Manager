@@ -20,7 +20,7 @@ const Admin = () => {
 	const { users, jobs } = useLoaderData()
 
 	return (
-		<>
+		<section className='grid gap-y-8 md:grid-cols-2 gap-x-4 lg:grid-cols-3'>
 			<StatItem
 				title='current users'
 				count={users}
@@ -35,7 +35,7 @@ const Admin = () => {
 				bcg=''
 				icon={<FaSuitcaseRolling />}
 			/>
-		</>
+		</section>
 	)
 }
 
