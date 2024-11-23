@@ -8,7 +8,7 @@ import { StatItem } from '../components'
 export const loader = async () => {
 	try {
 		const response = await customFetch('/users/admin/stats')
-		return response
+		return response.data
 	} catch (error) {
 		const customError = error as CustomActionError
 		toast.error(customError.response?.data?.msg || 'An error occurred')

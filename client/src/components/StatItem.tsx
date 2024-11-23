@@ -11,7 +11,7 @@ const StatItem = ({ count, title, icon, color }: StatItemProps) => {
 		<article
 			className={`p-8 bg-orange-700  border-b-4 rounded-sm`}
 			style={{ borderColor: color }}>
-			<header className=''>
+			<header className='flex items-center content-between'>
 				<span className=''>{count}</span>
 				<span className=''>{icon}</span>
 			</header>
