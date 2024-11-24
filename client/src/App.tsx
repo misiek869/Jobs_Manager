@@ -19,6 +19,7 @@ import { action as loginAction } from './pages/Login'
 import { action as addJobAction } from './pages/AddJob'
 import { action as editJobAction } from './pages/EditJob'
 import { action as deleteJobAction } from './pages/DeleteJob'
+import { action as updateUserAction } from './pages/Profile'
 
 import { loader as dashboardLoader } from './pages/DashboardLayout'
 import { loader as getAllJobsLoader } from './pages/AllJobs'
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
 					},
 					{ path: 'stats', element: <Stats /> },
 					{ path: 'all-jobs', loader: getAllJobsLoader, element: <AllJobs /> },
-					{ path: 'profile', element: <Profile /> },
+					{ path: 'profile', action: updateUserAction, element: <Profile /> },
 					{ path: 'admin', loader: adminLoader, element: <Admin /> },
 					{
 						path: 'edit-job/:id',
