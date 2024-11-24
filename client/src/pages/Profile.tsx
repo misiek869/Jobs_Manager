@@ -6,10 +6,15 @@ type UserContext = {
 	user: UserType
 }
 
+export const action = async () => {
+	const formData = await request.formData()
+	const data = Object.fromEntries(formData)
+
+	console.log(data)
+}
+
 const Profile = () => {
 	const { user } = useOutletContext<UserContext>()
-
-	console.log(user)
 
 	const navigation = useNavigation()
 
