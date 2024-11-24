@@ -4,6 +4,7 @@ import 'express-async-errors'
 import * as dotenv from 'dotenv'
 dotenv.config()
 import express from 'express'
+const app = express()
 import morgan from 'morgan'
 import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
@@ -12,12 +13,17 @@ import cookieParser from 'cookie-parser'
 import jobRouter from './routes/jobRouter.js'
 import userRouter from './routes/userRouter.js'
 import currentUserRouter from './routes/currentUserRouter.js'
+// public
+import path, { dirname } from 'path'
+import { fileURLToPath } from 'url'
 
 // middleware
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js'
 import { authenticateUser } from './middleware/userMiddlewate.js'
 
-const app = express()
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+app.use(express.static(path.resolve(__dirname, './public')))
 
 if (process.env.NODE_ENV === 'development') {
 	app.use(morgan('dev'))
@@ -27,7 +33,7 @@ app.use(cookieParser())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-	res.send('hello world')
+	res.send('hello world from server')
 })
 
 app.use('/api/v1/jobs', authenticateUser, jobRouter)
