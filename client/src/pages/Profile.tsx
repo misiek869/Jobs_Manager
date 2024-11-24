@@ -1,16 +1,38 @@
-import { Form, useNavigation, useOutletContext } from 'react-router-dom'
+import {
+	Form,
+	redirect,
+	useNavigation,
+	useOutletContext,
+} from 'react-router-dom'
 import { UserType } from '../utils/type'
 import { FormRow } from '../components'
+import { ActionFunctionArgs } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import customFetch from '../utils/customFetch'
+import { CustomActionError } from '../utils/type'
 
 type UserContext = {
 	user: UserType
 }
 
-export const action = async () => {
+export const action = async ({ request }: ActionFunctionArgs) => {
 	const formData = await request.formData()
-	const data = Object.fromEntries(formData)
+	const file = formData.get('avatar')
 
-	console.log(data)
+	if (file instanceof File && file.size > 500000) {
+		toast.error('Image size too big')
+		return null
+	}
+
+	try {
+		await customFetch.patch('/users/update-user', formData)
+		toast.success('Profile Updated')
+		return redirect('/dashboard/all-jobs')
+	} catch (error) {
+		const customError = error as CustomActionError
+		toast.error(customError.response?.data?.msg || 'An error occurred')
+		return null
+	}
 }
 
 const Profile = () => {
