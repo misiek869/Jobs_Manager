@@ -26,7 +26,8 @@ export type UserType = {
 	lastName: string
 	location: string
 	role: string
-	avatar: File
+	avatar: string
+	avatarPublicId?: string
 }
 
 export const JOB_STATUS = {
