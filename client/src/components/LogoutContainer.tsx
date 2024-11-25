@@ -16,7 +16,16 @@ const LogoutContainer = () => {
 				type='button'
 				className={`${btnStyle} font-medium flex items-center justify-center gap-x-2`}
 				onClick={() => setShowLogout(!showLogout)}>
-				<FaUserCircle className='text-xl' />
+				{user?.avatar ? (
+					<img
+						src={user.avatar}
+						alt='avatar'
+						className='w-full block object-cover'
+					/>
+				) : (
+					<FaUserCircle className='text-xl' />
+				)}
+
 				{user?.name}
 				<FaCaretDown />
 			</button>
