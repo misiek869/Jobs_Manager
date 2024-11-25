@@ -1,5 +1,11 @@
 import { Logo, FormRow } from '../components'
-import { Link, Form, redirect, useNavigation } from 'react-router-dom'
+import {
+	Link,
+	Form,
+	redirect,
+	useNavigation,
+	useNavigate,
+} from 'react-router-dom'
 import { toast } from 'react-toastify'
 import customFetch from '../utils/customFetch'
 import { ActionFunctionArgs } from 'react-router-dom'
@@ -27,6 +33,23 @@ const Login = () => {
 	const navigation = useNavigation()
 
 	const isLogging = navigation.state === 'submitting'
+
+	const navigate = useNavigate()
+
+	const loginDemoUser = async () => {
+		try {
+			const data = {
+				email: 'funny@email.com',
+				password: 'secret123',
+			}
+			await customFetch.post('/auth/login', data)
+			toast.success('Logged In Test Mode')
+			navigate('/dashboard')
+		} catch (error) {
+			const customError = error as CustomActionError
+			toast.error(customError.response?.data?.msg || 'An error occurred')
+		}
+	}
 
 	return (
 		<section className='min-h-screen grid place-items-center '>
@@ -56,7 +79,8 @@ const Login = () => {
 				<button
 					disabled={isLogging}
 					className={`${btnStyle} disabled:opacity-65`}
-					type='submit'>
+					type='submit'
+					onClick={loginDemoUser}>
 					demo
 				</button>
 
